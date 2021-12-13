@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStockRusakTable extends Migration
+class ProdukKategoriHargaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateStockRusakTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock_rusak', function (Blueprint $table) {
+        Schema::create('produk_kategori_harga', function (Blueprint $table) {
             $table->id();
+            $table->string('kode')->unique();
+            $table->text('keterangan')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateStockRusakTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_rusak');
+        Schema::dropIfExists('produk_kategori_harga');
     }
 }

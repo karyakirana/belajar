@@ -15,9 +15,10 @@ class CreateProdukKategoriTable extends Migration
     {
         Schema::create('produk_kategori', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
+            $table->string('kode')->unique();
             $table->string('deskripsi');
             $table->text('keterangan')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

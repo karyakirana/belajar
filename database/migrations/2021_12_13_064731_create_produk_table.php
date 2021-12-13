@@ -15,23 +15,22 @@ class CreateProdukTable extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kategori_id');
             $table->string('kode');
-            $table->string('kode_lokal');
-            $table->string('penerbit')->nullable();
-            $table->string('produk');
-            $table->bigInteger('hal')->nullable();
-            $table->string('cover');
-            $table->bigInteger('harga');
-            $table->string('size')->nullable();
-            $table->text('keterangan')->nullable();
-            $table->timestamps();
-
-            $table->foreign('kategori_id')
-                ->references('id')
-                ->on('produk_kategori')
+            $table->foreignId('kategori_id')
+                ->constrained('produk_kategori')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
+            $table->foreignId('kategori_harga_id')
+                ->constrained('produk_kategori_harga')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+            $table->string('kode_lokal');
+            $table->string('penerbit');
+            $table->string('nama');
+            $table->bigInteger('hal');
+            $table->string('cover', '20');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

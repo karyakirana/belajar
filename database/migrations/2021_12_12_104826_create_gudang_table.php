@@ -15,10 +15,11 @@ class CreateGudangTable extends Migration
     {
         Schema::create('gudang', function (Blueprint $table) {
             $table->id();
-            $table->string('kode');
+            $table->string('kode')->unique();
             $table->text('alamat');
             $table->string('kota')->nullable();
             $table->text('keterangan')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

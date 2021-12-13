@@ -15,7 +15,11 @@ class CreatePegawaiTable extends Migration
     {
         Schema::create('pegawai', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('user_id')->nullable();
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
             $table->string('kode')->unique();
             $table->string('nama');
             $table->string('gender');
@@ -27,14 +31,8 @@ class CreatePegawaiTable extends Migration
             $table->string('kota');
             $table->string('kode_pos')->nullable();
             $table->text('keterangan')->nullable();
+            $table->softDeletes();
             $table->timestamps();
-
-            // foreign
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
         });
     }
 
