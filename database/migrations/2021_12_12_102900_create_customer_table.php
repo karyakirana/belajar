@@ -19,7 +19,7 @@ class CreateCustomerTable extends Migration
             $table->string('nama');
             $table->string('telepon')->nullable();
             $table->text('alamat')->nullable();
-            $table->float('diskon', '2')->nullable();
+            $table->float('diskon', '100', 2)->nullable();
             $table->text('keterangan');
             $table->softDeletes();
             $table->timestamps();
