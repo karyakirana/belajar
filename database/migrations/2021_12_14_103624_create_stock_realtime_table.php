@@ -20,11 +20,11 @@ class CreateStockRealtimeTable extends Migration
                 ->constrained('gudang')
                 ->cascadeOnUpdate()
                 ->restrictOnDelete();
-            $table->bigInteger('stock_opname');
-            $table->bigInteger('stock_in');
-            $table->bigInteger('stock_out');
-            $table->bigInteger('stock_akhir');
-            $table->bigInteger('stock_lost');
+            $table->bigInteger('stock_opname')->default(0);
+            $table->bigInteger('stock_in')->default(0);
+            $table->bigInteger('stock_out')->default(0);
+            $table->bigInteger('stock_akhir')->default(0);
+            $table->bigInteger('stock_lost')->default(0);
             $table->timestamps();
         });
     }
